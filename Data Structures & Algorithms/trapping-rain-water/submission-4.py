@@ -1,0 +1,18 @@
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        maxLeft = height[0]
+        maxRight = height[-1]
+
+        l, r = 0, len(height) - 1
+        water = 0
+
+        while l < r:
+            if height[l] < height[r]:
+                l += 1
+                maxLeft = max(maxLeft, height[l])
+                water += maxLeft - height[l]
+            else:
+                r -= 1
+                maxRight = max(maxRight, height[r])
+                water += maxRight - height[r]
+        return water
